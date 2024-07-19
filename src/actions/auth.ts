@@ -121,3 +121,12 @@ export async function signUp(formState: SignUpFormState, formData: FormData): Pr
 export async function logout() {
     return await signOut();
 }
+
+// Function to find a user by email in the database
+export const findUserByEmail = async (email: string) => {
+    return await db.user.findFirst({
+        where: {
+            email,
+        },
+    });
+};
