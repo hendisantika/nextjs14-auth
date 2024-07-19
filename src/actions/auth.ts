@@ -201,3 +201,14 @@ export const resendVerificationEmail = async (email: string) => {
 
     return 'Email verification sent.';
 };
+
+// Function to verify a user's email
+export const verifyEmail = (email: string) => {
+    return db.user.update({
+        where: {email},
+        data: {
+            emailVerifiedAt: new Date(),
+            emailVerifToken: null,
+        },
+    });
+};
