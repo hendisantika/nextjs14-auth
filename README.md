@@ -44,3 +44,33 @@ npm install
 ```
 npm run dev
 ```
+
+### Image Screenshot
+
+Home Page
+
+![Home Page](img/member.png "Home Page")
+
+SignUp User
+
+![SignUp User](img/signup.png "SignUp User")
+
+Email
+
+![Email](img/email.png "Email")
+
+Verify User
+
+![Verify User](img/verify.png "Verify User")
+
+![Verify User](img/verify2.png "Verify User")
+
+Login Page
+
+![Login Page](img/login.png "Login Page")
+
+![Login Page](img/login2.png "Login Page")
+
+Settings
+
+![Settings](img/settings.png "Settings")
