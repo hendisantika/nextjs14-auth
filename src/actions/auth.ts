@@ -7,6 +7,7 @@ import {AuthError, User} from 'next-auth';
 import {EmailNotVerifiedError} from '@/errors';
 import {redirect} from "next/navigation";
 import {db} from "@/db";
+import {randomBytes} from "node:crypto";
 
 // Authenticating function for sign-in
 export async function authenticate(prevState: string | undefined, formData: FormData) {
@@ -139,4 +140,12 @@ const generatePasswordHash = async (password: string) => {
     // computational work is needed to compute the hash.
     const salt = await bcryptjs.genSalt(10);
     return bcryptjs.hash(password, salt);
+};
+
+// Function to generate an email verification token
+const generateEmailVerificationToken = () => {
+    // generates a buffer containing 32 random bytes.
+    // The 32 indicates the number of bytes to generate, and it is commonly used
+    // for creating secure tokens or identifiers.
+    return randomBytes(32).toString('hex');
 };
