@@ -2,7 +2,7 @@
 'use server';
 
 // Importing necessary modules and components
-import {signIn} from '@/auth';
+import {signIn, signOut} from '@/auth';
 import {AuthError, User} from 'next-auth';
 import {EmailNotVerifiedError} from '@/errors';
 import {redirect} from "next/navigation";
@@ -115,4 +115,9 @@ export async function signUp(formState: SignUpFormState, formData: FormData): Pr
 
     // Redirecting to the email verification page
     redirect(`/email/verify/send?email=${result.data.email}&verification_sent=1`);
+}
+
+// Function to handle user logout
+export async function logout() {
+    return await signOut();
 }
