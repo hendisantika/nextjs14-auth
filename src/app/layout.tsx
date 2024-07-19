@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
+import Providers from "./providers"; // We bring in the Provider component that we will create later for session capture
 
 const inter = Inter({ subsets: ["latin"] });
 
