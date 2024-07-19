@@ -38,3 +38,13 @@ const signUpSchema = z.object({
     email: z.string().email(),
     password: z.string().min(3).max(255),
 });
+
+// Interface for the sign-up form state
+interface SignUpFormState {
+    errors: {
+        name?: string[];
+        email?: string[];
+        password?: string[];
+        _form?: string[];
+    };
+}
