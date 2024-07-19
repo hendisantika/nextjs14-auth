@@ -181,3 +181,23 @@ const sendVerificationEmail = async (email: string, token: string) => {
         throw error;
     }
 };
+
+// Function to resend email verification
+export const resendVerificationEmail = async (email: string) => {
+    const emailVerificationToken = generateEmailVerificationToken();
+
+    try {
+        // update email verification token
+        await db.user.update({
+            where: {email},
+            data: {emailVerifyToken: emailVerificationToken},
+        });
+
+        // send the verification link along with the token
+        await sendVerificationEmail(email, emailVerificationToken);
+    } catch (error) {
+        return 'Something went wrong.';
+    }
+
+    return 'Email verification sent.';
+};
