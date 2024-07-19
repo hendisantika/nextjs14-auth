@@ -162,3 +162,22 @@ const sendVerificationEmail = async (email: string, token: string) => {
             pass: process.env.MAIL_PASSWORD,
         },
     });
+    // the content of the email
+    const emailData = {
+        from: '"Blog Nextjs Auth" <verification@test.com>',
+        to: email,
+        subject: 'Email Verification',
+        html: `
+      <p>Click the link below to verify your email:</p>
+      <a href="http://localhost:3000/email/verify?email=${email}&token=${token}">Verify Email</a>
+    `,
+    };
+
+    try {
+        // send the email
+        await transporter.sendMail(emailData);
+    } catch (error) {
+        console.error('Failed to send email:', error);
+        throw error;
+    }
+};
