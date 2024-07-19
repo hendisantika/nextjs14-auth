@@ -8,6 +8,9 @@ import {EmailNotVerifiedError} from '@/errors';
 import {redirect} from "next/navigation";
 import {db} from "@/db";
 import {randomBytes} from "node:crypto";
+import {z} from "zod";
+import bcryptjs from 'bcryptjs'
+import nodemailer from 'nodemailer'
 
 // Authenticating function for sign-in
 export async function authenticate(prevState: string | undefined, formData: FormData) {
@@ -211,7 +214,7 @@ export const verifyEmail = (email: string) => {
             emailVerifToken: null,
         },
     });
-};
+}
 
 // Function to check if a user's email is verified
 export const isUsersEmailVerified = async (email: string) => {
