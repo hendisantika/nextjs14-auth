@@ -212,3 +212,18 @@ export const verifyEmail = (email: string) => {
         },
     });
 };
+
+// Function to check if a user's email is verified
+export const isUsersEmailVerified = async (email: string) => {
+    const user = await db.user.findFirst({
+        where: {email},
+    });
+
+    // if the user doesn't exist then it's none of the function's business
+    if (!user) return true;
+
+    // if the emailVerifiedAt value is null then raise the EmailNotVerifiedError error
+    if (!user?.emailVerifiedAt) throw new EmailNotVerifiedError(`EMAIL_NOT_VERIFIED:${email}`);
+
+    return true;
+};
