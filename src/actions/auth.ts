@@ -149,3 +149,16 @@ const generateEmailVerificationToken = () => {
     // for creating secure tokens or identifiers.
     return randomBytes(32).toString('hex');
 };
+
+// Function to send a verification email
+const sendVerificationEmail = async (email: string, token: string) => {
+    // nodemailer configuration. make sure to replace this with your native email provider in production.
+    // we will use mailtrap in this tutorial, so make sure you have the correct configuration in your .env
+    const transporter: nodemailer.Transporter = nodemailer.createTransport({
+        host: process.env.MAIL_HOST,
+        port: Number(process.env.EMAIL_PORT) || 0,
+        auth: {
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD,
+        },
+    });
