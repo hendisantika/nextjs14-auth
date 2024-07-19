@@ -31,3 +31,10 @@ export async function authenticate(prevState: string | undefined, formData: Form
         throw error;
     }
 }
+
+// Defining the schema for sign-up form validation
+const signUpSchema = z.object({
+    name: z.string().min(3).max(255),
+    email: z.string().email(),
+    password: z.string().min(3).max(255),
+});
